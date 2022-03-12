@@ -1,0 +1,63 @@
+#pdf-main-container,
+#preview-pdf-main-container {
+        /*width: 400px;*/
+        margin: 20px auto;
+}
+
+#pdf-loader,
+#preview-pdf-loader {
+    display: none;
+    text-align: center;
+    color: #999999;
+    font-size: 13px;
+    line-height: 100px;
+    height: 100px;
+}
+
+#pdf-contents,
+#preview-pdf-contents {
+        display: none;
+}
+
+#pdf-meta,
+#preview-pdf-meta {
+        overflow: hidden;
+        margin: 0 0 20px 0;
+}
+
+#pdf-buttons,
+#preview-pdf-buttons {
+        float: left;
+}
+
+#page-count-container,
+#preview-page-count-container {
+        float: right;
+}
+
+#pdf-current-page,
+#preview-pdf-current-page {
+        display: inline;
+}
+
+#pdf-total-pages,
+#preview-pdf-total-pages {
+        display: inline;
+}
+
+#pdf-canvas,
+#preview-pdf-canvas {
+        border: 1px solid rgba(0,0,0,0.2);
+        box-sizing: border-box;
+        width: 100%;
+}
+
+#page-loader,
+#preview-page-loader {
+        height: 100px;
+        line-height: 100px;
+        text-align: center;
+        display: none;
+        color: #999999;
+        font-size: 13px;
+}

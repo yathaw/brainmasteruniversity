@@ -1,0 +1,24 @@
+@font-face{
+	font-family: 'SFMono-Regular';
+	src:url('../fonts/FontsFree-Net-SFMono-Regular.ttf');
+}
+
+@font-face{
+	font-family: 'PublicSans-Regular';
+	src:url('../fonts/PublicSans-Regular.ttf');
+}
+
+@font-face{
+	font-family: 'PublicSans-Black';
+	src:url('../fonts/PublicSans-Black.ttf');
+}
+
+@font-face{
+	font-family: 'PublicSans-Bold';
+	src:url('../fonts/PublicSans-Bold.ttf');
+}
+
+@font-face{
+	font-family: 'PublicSans-Light';
+	src:url('../fonts/PublicSans-Light.ttf');
+}
