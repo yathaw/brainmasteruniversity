@@ -12,7 +12,7 @@
 
 	$genders = ["Male","Female"];
 
-	for ($i=0; $i <= 9; $i++) {
+	for ($i=3; $i <= 13; $i++) {
 		$a=$faker->numberBetween(1, 25);
 
 		$name = $faker->name();
@@ -32,6 +32,11 @@
 		$users_sql = "INSERT INTO users(name, profile, email, password, gender, phone, address, status, joindate, dob) VALUES 
     	('$name','$profile','$email','$password','$gender','$phone','$address','$status','$jod', '$dob')";
     	mysqli_query($conn, $users_sql);
+
+    	$userid = $conn->insert_id;
+
+        $positionuser_sql = "INSERT INTO position_user(user_id, position_id, type) VALUES ('$userid','$a', 'QAC')";
+        mysqli_query($conn, $positionuser_sql);
 
     	
 	}

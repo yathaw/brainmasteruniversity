@@ -2,10 +2,11 @@
 	require 'header.php';
     include("confs/config.php");
 
-    $position_sql="SELECT * from positions";
+    $position_sql="SELECT * from positions WHERE NOT id=1";
     $position_query=mysqli_query($conn,$position_sql);
     $positions=mysqli_fetch_all($position_query);
-
+    unset($_SESSION['oldvalue']);
+        unset($_SESSION['store_reject']);
     if(isset($_POST["btnsave"]))
     {
         unset($_SESSION['oldvalue']);
@@ -30,7 +31,7 @@
         $dob=$_POST['dob'];
         $jod=$_POST['jod'];
         $address=$_POST['address'];
-
+        $type = $_POST['type'];
 
         $_SESSION['oldvalue']['status'] = $status;
         $_SESSION['oldvalue']['positionid'] = $positionid;
@@ -41,6 +42,7 @@
         $_SESSION['oldvalue']['dob'] = $dob;
         $_SESSION['oldvalue']['jod'] = $jod;
         $_SESSION['oldvalue']['address'] = $address;
+        $_SESSION['oldvalue']['type'] = $type;
 
         if (empty($name)) {
             $nameErr = 'The name field is required.';
@@ -106,9 +108,14 @@
                     $uploadFileDir = "upload/img/";
 
                     $fileTmpPath = $_FILES['img']['tmp_name'];
-                    $fileName = $_FILES['img']['name'];
+                    $fileName = $_FILES['img']['name']; // cat.jpg
                     $fileSize = $_FILES['img']['size'];
                     $fileType = $_FILES['img']['type'];
+
+                    // user1 -> cat.jpg -> 222.jpg
+                    // user2 -> cat.jpg -> 333.jpg
+
+                    
                     $fileNameCmps = explode(".", $fileName);
                     $fileExtension = strtolower(end($fileNameCmps));
 
@@ -126,7 +133,13 @@
 
                             $userid = $conn->insert_id;
 
-                            $positionuser_sql = "INSERT INTO position_user(user_id, position_id) VALUES ('$userid','$positionid')";
+                            if($type == "Yes"){
+                                $qac = "QAC";
+                            }else{
+                                $qac = NULL;
+                            }
+
+                            $positionuser_sql = "INSERT INTO position_user(user_id, position_id, type) VALUES ('$userid','$positionid', '$qac')";
                             mysqli_query($conn, $positionuser_sql);
 
                             unset($_SESSION['oldvalue']);
@@ -259,7 +272,7 @@
                                     <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12">
                                         <div class="row mb-3">
 
-                                            <div class="col-xl-8 col-lg-8 col-md-6 col-12 form-group">
+                                            <div class="col-12 form-group">
                                                 <label class="form-label" for="inputName">Full Name</label>
                                                 <div class="input-group input-group-merge">
                                                     <span class="input-group-text">
@@ -272,8 +285,10 @@
                                                     <?php if (isset($nameErr)) { echo $nameErr; } ?>
                                                 </p>
                                             </div>
+                                        </div>
 
-                                            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 form-group">
+                                        <div class="row mb-3">
+                                            <div class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-12 form-group">
                                                 <label for="inputosition" class="mb-2">Position</label>
                                                 <select class="select2 " name="positionid">
                                                     <option></option>
@@ -296,6 +311,16 @@
                                                 <p class="text-danger">
                                                     <?php if (isset($positionErr)) { echo $positionErr; } ?>
                                                 </p>
+                                            </div>
+                                            <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12 form-group">
+                                                <label for="inputosition" class="mb-2">That staff is QAC for that position?</label>
+
+                                                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                                    <input type="radio" class="btn-check" name="type" id="btnradio3" value="No" <?php if(isset($_SESSION['oldvalue']['type']) && !empty($_SESSION['oldvalue']['type'] =="No") ){ echo "checked"; } ?> <?php if (empty($_SESSION['oldvalue'])) { echo "checked"; } ?> />
+                                                    <label class="btn btn-outline-dark" for="btnradio3"> No </label>
+                                                    <input type="radio" class="btn-check" name="type" id="btnradio4" value="Yes" <?php if(isset($_SESSION['oldvalue']['type']) && !empty($_SESSION['oldvalue']['type'] =="Yes") ){ echo "checked"; } ?>/>
+                                                    <label class="btn btn-outline-dark" for="btnradio4">Yes</label>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row mb-3">

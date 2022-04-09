@@ -19,6 +19,7 @@
     $roleNav = ["role_list", "role_add","role_edit"];
 
     $sess_user_pname = $_SESSION['sess_user']['pname'];
+    $sess_user_type = $_SESSION['sess_user']['type'];
     
 ?>
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
@@ -85,7 +86,7 @@
         </li>
 
         <?php 
-            if($sess_user_pname == 'QA Manager'): 
+            if($sess_user_pname == 'QA Manager' || $sess_user_type == "QAC"): 
         ?>
 
 
@@ -99,6 +100,12 @@
                 <div data-i18n="Staff">Staff</div>
             </a>
         </li>
+
+        <?php 
+            endif;
+            if($sess_user_pname == 'QA Manager'): 
+        ?>
+
 
         <li class="menu-item <?php if ($route=="staff_add") {echo "active"; } else  {echo "";}?>">
             <a href="staff_add.php" class="menu-link">

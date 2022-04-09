@@ -39,7 +39,9 @@
                                         <?php 
                                             $select="SELECT * from categories";
                                             $query=mysqli_query($conn,$select);
+
                                             $count=mysqli_num_rows($query);
+
                                             if ($count>0)
                                             {
                                                 $number =1;
@@ -47,7 +49,8 @@
                                                 for ($i=0; $i<$count; $i++)
                                                 {
                                                     $data=mysqli_fetch_array($query);
-                                                    $id=$data['id'];
+
+                                                    $id= $data['id'];
                                                     $name=$data['name'];
                                                     $color=$data['color'];
                                                     $ideaEndDate=$data['ideaenddate'];

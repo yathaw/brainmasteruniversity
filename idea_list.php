@@ -97,6 +97,9 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h5 class="d-inline-block"> <?= $cname; ?> </h5>
+
+                                    <button class="dt-button buttons-collection btn btn-label-secondary dropdown-toggle mx-3" tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="true" aria-expanded="false"><span><i class="bx bx-upload me-2"></i>Export</span></button>
+                                        
                                 </div>
                                 <div class="card-body">
                                     <ul class="timeline">

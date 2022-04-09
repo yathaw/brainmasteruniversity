@@ -12,11 +12,17 @@
 
     foreach($categories as $key => $category){
 
+        $start = date("Y-m-d", strtotime($category[5]));
+        $end = date("Y-m-d", strtotime($category[3]));
+
+
         $data[] = array(
             'id'        => $category[0],
             'title'     => $category[1],
-            'start'     => $category[5],
-            'end'       => $category[3]
+            'start'     => $start,
+            'end'       => $end,
+            'backgroundColor' =>  $category[2],
+            'borderColor' =>  $category[2],
          );
 
     }

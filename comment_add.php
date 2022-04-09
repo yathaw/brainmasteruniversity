@@ -20,6 +20,11 @@
 			    ('$comment','$status','$ideaid','$userid')";
 		mysqli_query($conn, $comments_sql);
 	}
+
+	$commentid = $conn->insert_id;
+
+	header("location:mail/comment.php/?id=$commentid");
+
 	echo mysqli_error($conn);
 	echo 'Data Inserted';
 

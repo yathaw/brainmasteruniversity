@@ -8,13 +8,16 @@
 	$userid = $_SESSION['sess_user']['id'];
 	$status = $_POST['status'];
 
-	var_dump($react);
-
 	if($status == 'react'){
 
 		$reacts_sql = "INSERT INTO reacts(react, idea_id, user_id) VALUES 
 			    ('$react','$ideaid','$userid')";
 		mysqli_query($conn, $reacts_sql);
+
+		$reactid = $conn->insert_id;
+
+		header("location:mail/react.php/?id=$reactid");
+
 	}else{
 
 		$react_sql = "SELECT * FROM reacts WHERE idea_id = '$ideaid' AND user_id = '$userid' AND react = '$react' ";

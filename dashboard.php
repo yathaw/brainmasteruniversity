@@ -71,9 +71,9 @@
 					      	</div>
 					      	<div class="card mb-4">
 					      		<div class="d-flex align-items-end row">
-					              	<div class="co-10">
+					              	<div class="co-11">
 					                  	<div class="card-body">
-					      					<div id='calendar'></div>
+					      					<div id='calendar' class='inline-calendar'></div>
 					      				</div>
 					      			</div>
 					      		</div>

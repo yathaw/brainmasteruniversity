@@ -2,6 +2,37 @@
 	require 'header.php';
     include("confs/config.php");
 
+    $sess_user_type = $_SESSION['sess_user']['type'];
+    $sess_user_pid = $_SESSION['sess_user']['pid'];
+
+
+    if($sess_user_type == 'QAC'){
+        $select="SELECT
+            users.*,
+            positions.name AS pname,
+            departments.name AS dname
+        FROM
+            users
+        LEFT JOIN position_user ON users.id = position_user.user_id
+        LEFT JOIN positions ON position_user.position_id = positions.id
+        LEFT JOIN departments ON positions.department_id = departments.id
+        WHERE positions.id = $sess_user_pid
+        ";
+
+    }else{
+        $select="SELECT
+                users.*,
+                positions.name AS pname,
+                departments.name AS dname
+            FROM
+                users
+            LEFT JOIN position_user ON users.id = position_user.user_id
+            LEFT JOIN positions ON position_user.position_id = positions.id
+            LEFT JOIN departments ON positions.department_id = departments.id
+            ORDER BY positions.id
+            ";
+    }
+
 ?>
 
     <div class="layout-wrapper layout-content-navbar">
@@ -32,17 +63,7 @@
                                     </thead>
                                     <tbody class="table-border-bottom-0">
                                         <?php 
-                                            $select="SELECT
-                                                users.*,
-                                                positions.name AS pname,
-                                                departments.name AS dname
-                                            FROM
-                                                users
-                                            LEFT JOIN position_user ON users.id = position_user.user_id
-                                            LEFT JOIN positions ON position_user.position_id = positions.id
-                                            LEFT JOIN departments ON positions.department_id = departments.id
-                                            ORDER BY positions.id
-                                            ";
+                                            
                                             $query=mysqli_query($conn,$select);
                                             $count=mysqli_num_rows($query);
                                             if ($count>0)
@@ -117,7 +138,7 @@
                                                             <i class="bx bx-dots-vertical-rounded"></i>
                                                         </button>
                                                         <div class="dropdown-menu">
-                                                            <a class="dropdown-item text-primary detailBtn" href="javascript:void(0)" data-name="<?= $name; ?>" data-profile="<?= $profile; ?>" data-email="<?= $email; ?>" data-jod="<?= $jod; ?>" data-dob="<?= $dob; ?>" data-status="<?= $status; ?>" data-pname="<?= $pname; ?>" data-dname="<?= $dname; ?>" data-experience="<?= $experience; ?>" data-gender="<?= $gender; ?>" data-phone="<?= $phone; ?>" data-address="<?= $address; ?>">
+                                                            <a class="dropdown-item text-primary detailBtn" href="javascript:void(0)" data-id="<?= $id; ?>">
                                                                 <i class='bx bxs-user-detail' ></i> Details     
                                                             </a>
                                                             <a class="dropdown-item text-danger removeBtn" href="javascript:void(0)" data-id="<?= $id; ?>">

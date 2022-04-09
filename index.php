@@ -33,7 +33,7 @@ if(isset($_POST["btnlogin"]))
 
     if($valid){
 
-	    $login_query=mysqli_query($conn,"SELECT users.*, positions.name as pname FROM users 
+	    $login_query=mysqli_query($conn,"SELECT users.*, positions.name as pname, positions.id as pid, position_user.type as type FROM users 
             INNER JOIN position_user ON users.id = position_user.user_id
             INNER JOIN positions ON position_user.position_id = positions.id
 	    	WHERE users.email='$email' AND users.password='$password' 

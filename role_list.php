@@ -45,7 +45,7 @@
                                             LEFT JOIN positions ON position_user.position_id = positions.id
                                             LEFT JOIN departments ON positions.department_id = departments.id
                                             WHERE position_user.position_id = $id 
-                                            ORDER BY positions.id";
+                                            ORDER BY positions.id, position_user.type DESC";
                             $position_user_query=mysqli_query($conn,$position_user_select);
                             $position_user_count=mysqli_num_rows($position_user_query);
 

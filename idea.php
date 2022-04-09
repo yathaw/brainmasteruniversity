@@ -391,10 +391,12 @@
         var status = $('#inputAnonymous').is(':checked');
         var ideaid = "<?= $id; ?>";
 
+        console.log(status);
+
         if(status){
-            var status = 'off';
-        }else{
             var status = 'on';
+        }else{
+            var status = 'off';
         }
 
         console.log(status);
@@ -619,7 +621,7 @@
         var body = $(this).data("body");
 
         if(status =="off"){
-            $('#inputAnonymous').prop('checked', true);
+            $('#inputAnonymous').prop('checked', false);
         }
 
         $('#inputComment').val(body);

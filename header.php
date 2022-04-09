@@ -54,7 +54,7 @@
 
         <!-- Calendar CSS -->
         <link rel="stylesheet" type="text/css" href="assets/vendor/fullcalendar/main.css">
-
+        
         <!-- Date Picker CSS -->
         <link rel="stylesheet" href="assets/vendor/datepicker/datepicker.min.css">
 

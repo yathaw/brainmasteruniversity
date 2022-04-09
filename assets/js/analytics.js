@@ -1,3 +1,4 @@
+
 $(document).ready(function() 
 {
     $.ajax({
@@ -109,6 +110,7 @@ $(document).ready(function()
     
     var calendar = new FullCalendar.Calendar(calendarEl, {
         timeZone: 'Asia/Yangon',
+        height: 400,
         // droppable: true,
         initialView: 'dayGridMonth',
         headerToolbar: { 
@@ -123,11 +125,6 @@ $(document).ready(function()
             listWeek: 'List Week'
         },
         editable: false,
-        eventTimeFormat: { // like '14:30:00'
-            hour: 'numeric',
-            minute: '2-digit',
-            meridiem: false
-        },
         events: 'getAllideas.php'
 
 

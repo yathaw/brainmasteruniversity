@@ -106,6 +106,10 @@
             ('$title','$description','$file_path','$category','$userid','$anonymousStatus')";
             $ret    = mysqli_query($conn, $insert);
 
+            $ideaid = $conn->insert_id;
+
+            header("location:mail/newpost.php/?id=$ideaid");
+
             if ($ret)
             {
                 unset($_SESSION['oldvalue']);
