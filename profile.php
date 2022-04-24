@@ -64,10 +64,6 @@
             $valid = false;
         }
 
-        if (empty($_FILES['img']['name'])) {
-            $imgErr = 'The file you upload seems to be empty. Please check whether you really want to upload this file.';
-            $valid = false;
-        }
 
         if($valid){
             
@@ -79,13 +75,13 @@
 
             $user_sql = "UPDATE users SET name='$name', gender='$gender', email='$email', password='$password', phone='$phone', dob='$dob', joindate='$jod', address='$address' WHERE id='$sess_userid' ";
             mysqli_query($conn, $user_sql);
-
+            // die(mysqli_error($conn));
             $_SESSION['store_success'] = "Your profile was updated!";
             echo "<script>
                     Swal.fire({
                         icon: 'success',
                         title: 'Store Successful',
-                        text: 'You saved the category.',
+                        text: 'You saved.',
                         showConfirmButton: false,
                         timer: 2000,
                         allowOutsideClick: false
