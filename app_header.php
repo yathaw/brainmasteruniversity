@@ -79,7 +79,7 @@
                                 </div>
                                 <div class="flex-grow-1">
                                     <span class="fw-semibold d-block"> <?= $_SESSION['sess_user']['name']; ?> </span>
-                                    <small class="text-muted"> <?= $_SESSION['sess_user']['pname']; ?> </small>
+                                    <small class="text-muted"> <?= $_SESSION['sess_user']['type']; ?> in <?= $_SESSION['sess_user']['pname']; ?> </small>
                                 </div>
                             </div>
                         </a>

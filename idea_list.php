@@ -78,6 +78,7 @@
             ORDER BY ideas.created_at DESC
             LIMIT $offset, $total_records_per_page";
     $latest_ideas_query=mysqli_query($conn,$latest_ideas_select);
+    $latest_ideas_numrows=mysqli_num_rows($latest_ideas_query);
     $latest_ideas=mysqli_fetch_all($latest_ideas_query);
 
     }
@@ -94,11 +95,17 @@
 
                     <div class="row">
                         <div class="col-12">
+                            <?php if($latest_ideas_numrows > 0){ ?>
                             <div class="card">
                                 <div class="card-header">
                                     <h5 class="d-inline-block"> <?= $cname; ?> </h5>
-
-                                    <button class="dt-button buttons-collection btn btn-label-secondary dropdown-toggle mx-3" tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="true" aria-expanded="false"><span><i class="bx bx-upload me-2"></i>Export</span></button>
+                                    <?php if($latest_ideas_numrows > 0){ ?>
+                                    <a class="dt-button buttons-collection btn btn-label-secondary d mx-3 float-end"  href="exportData.php?id=<?= $cid; ?>"><span><i class="bx bx-upload me-2"></i>Export</span></a>
+                                    <?php } else{ ?>
+                                        <button class="dt-button buttons-collection btn btn-label-secondary d mx-3 float-end"  data-bs-toggle="popover" data-bs-trigger="focus" title="Dismissible popover" disabled style="cursor: not-allowed;">
+                                            <span><i class="bx bx-upload me-2"></i>Export</span>
+                                        </button>
+                                    <?php } ?>
                                         
                                 </div>
                                 <div class="card-body">
@@ -323,6 +330,21 @@
                                     </nav>
                                 </div>
                             </div>
+                            <?php  } else{ ?>
+                            <div class="card p-5">
+                                <div class="card-body text-center">
+                                    <h2 class="mb-2 mx-2 "> There is no your idea in this <?= $cname; ?> section. :( </h2>
+
+                                    <p class="mb-4 mx-2"> More ideas for you will be shown here as your suggest idea are uploaded, so check back soon. </p>
+                                    <div class="row justify-content-center">
+                                        <div class="col-xl-6 col-lg-6 col-md-8 col-sm-12 col-12 text-center">
+                                            <img src="assets/img/empty.png" class="img-fluid">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <?php } ?>
                         </div>
                     </div>
                     
